@@ -26,14 +26,8 @@ public class EBook extends Livro{
 
     @Override
     public void descricao() {
-                System.out.print(
-                " \n O livro se chama: "    + getTitulo()     +
-                ", o autor e: "          + getAutor()         + 
-                ", ele tem "             + getNumeroPaginas() + 
-                "paginas!"                                    +
-                ", ele e um eBook com um tamanho de: "        + 
-                getTamanhoArquivo()
-        ); 
-    }               
+        System.out.printf(" Titulo: %-22s | Nome Autor: %-18s | Numero Paginas: %3d pags. | Tamanho Arquivo: %.2f MB\n", 
+                getTitulo(), getAutor(), getNumeroPaginas(), getTamanhoArquivo());
+    }            
 
 }

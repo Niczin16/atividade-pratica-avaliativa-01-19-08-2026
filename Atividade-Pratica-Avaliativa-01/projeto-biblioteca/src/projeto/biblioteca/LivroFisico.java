@@ -23,17 +23,11 @@ public class LivroFisico extends Livro{
     public void setPeso(double Peso) {
         this.Peso = Peso;
     }
-
+    
     @Override
     public void descricao() {
-               System.out.print(
-                " \n O livro se chama: " + getTitulo()        +
-                ", o autor e: "          + getAutor()         + 
-                ", ele tem "             + getNumeroPaginas() + 
-                "paginas!"                                    +
-                ", ele e um livro fisico com um peso de: "    + 
-                getPeso()
-        ); 
-    }    
+        System.out.printf(" Titulo: %-22s | Nome Autor: %-18s | Numero Paginas: %3d pags. | Peso: %.2f kg\n", 
+                getTitulo(), getAutor(), getNumeroPaginas(), getPeso());
+    }
     
 }
