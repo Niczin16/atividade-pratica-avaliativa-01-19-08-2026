@@ -11,25 +11,42 @@ package projeto.biblioteca;
 
 /* Lembrete de estudo - classe abstrata nunca é instanciada, ela é somente uma base para as outras que a herdarão */
 public class Livro {
-//    private Integer Controle; -Pensar em colocar depois
+    private Integer Controle; 
     private String Titulo;
     private String Autor;
     private Integer NumeroPaginas;
 
-    public Livro(String Titulo, String Autor, Integer NumeroPaginas) {      
+    public Livro(Integer Controle, String Titulo, String Autor, Integer NumeroPaginas) {      
+        this.Controle = Controle;
         this.Titulo = Titulo;
         this.Autor = Autor;
         this.NumeroPaginas = NumeroPaginas;
     }    
-    
+
+    public Integer getControle() {
+        return Controle;
+    } 
+
+    public void setControle(Integer Controle) {
+        this.Controle = Controle;
+    }
+           
     public String getTitulo() {
         return Titulo;
     }
 
+    public void setTitulo(String Titulo) {
+        this.Titulo = Titulo;
+    }  
+    
     public String getAutor() {
         return Autor;
     }
-
+    
+    public void setAutor(String Autor) {
+        this.Autor = Autor;
+    }  
+    
     public Integer getNumeroPaginas() {
         return NumeroPaginas;
     }
@@ -39,8 +56,8 @@ public class Livro {
     }
     
     public void descricao() {
-        System.out.printf("%-25s |  %-20s | %3d págs.\n", 
-                Titulo, Autor, NumeroPaginas);
+        System.out.printf(" [ %-2s ] | %-25s |  %-20s | %3d págs.\n", 
+                Controle ,Titulo, Autor, NumeroPaginas);
     }
 
 }

@@ -11,8 +11,8 @@ package projeto.biblioteca;
 public class EBook extends Livro{
     private double TamanhoArquivo;
 
-    public EBook(double TamanhoArquivo, String Titulo, String Autor, Integer NumeroPaginas) {
-        super(Titulo, Autor, NumeroPaginas);
+    public EBook(double TamanhoArquivo, Integer Controle, String Titulo, String Autor, Integer NumeroPaginas) {
+        super(Controle, Titulo, Autor, NumeroPaginas);
         this.TamanhoArquivo = TamanhoArquivo;
     }    
     
@@ -26,8 +26,8 @@ public class EBook extends Livro{
 
     @Override
     public void descricao() {
-        System.out.printf(" Titulo: %-22s | Nome Autor: %-18s | Numero Paginas: %3d pags. | Tamanho Arquivo: %.2f MB\n", 
-                getTitulo(), getAutor(), getNumeroPaginas(), getTamanhoArquivo());
+        System.out.printf(" [%-2s] | Titulo: %-22s | Nome Autor: %-18s | Numero Paginas: %3d pags. | Tamanho Arquivo: %.2f MB\n", 
+                getControle(), getTitulo(), getAutor(), getNumeroPaginas(), getTamanhoArquivo());
     }            
 
 }

@@ -11,8 +11,8 @@ package projeto.biblioteca;
 public class LivroFisico extends Livro{
     private double Peso;
 
-    public LivroFisico(double Peso, String Titulo, String Autor, Integer NumeroPaginas) {
-        super(Titulo, Autor, NumeroPaginas);
+    public LivroFisico(double Peso, Integer Controle, String Titulo, String Autor, Integer NumeroPaginas) {
+        super(Controle, Titulo, Autor, NumeroPaginas);
         this.Peso = Peso;
     }    
     
@@ -26,8 +26,8 @@ public class LivroFisico extends Livro{
     
     @Override
     public void descricao() {
-        System.out.printf(" Titulo: %-22s | Nome Autor: %-18s | Numero Paginas: %3d pags. | Peso: %.2f kg\n", 
-                getTitulo(), getAutor(), getNumeroPaginas(), getPeso());
+        System.out.printf(" [%-2s] | Titulo: %-22s | Nome Autor: %-18s | Numero Paginas: %3d pags. | Peso: %.2f kg\n", 
+               getControle(), getTitulo(), getAutor(), getNumeroPaginas(), getPeso());
     }
     
 }
