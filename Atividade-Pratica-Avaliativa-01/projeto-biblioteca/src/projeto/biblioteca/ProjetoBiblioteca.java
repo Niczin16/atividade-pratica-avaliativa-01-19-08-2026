@@ -445,6 +445,8 @@ public class ProjetoBiblioteca {
                                 
                             case 5:
                                 
+                                // <editor-fold defaultstate="collapsed" desc="Buscar Livros">
+                                
                                 System.out.println("\n\n");
                                 System.out.println(" -- Buscar Livros -- ");
                                 
@@ -468,10 +470,13 @@ public class ProjetoBiblioteca {
                                     System.out.println("-----------------------\n");
                                 }
                                 
+                                // </editor-fold>
+                                
                                 break;
                             
                             case 6:
-                                System.out.println("Voce voltou ao menu principal.");
+                                System.out.println("Voce voltou ao menu principal.");                                                                
+                                
                                 break;    
                                 
                             default:
@@ -481,12 +486,66 @@ public class ProjetoBiblioteca {
                         
                     } while (controle != 6);                                        
                     
+                    controle = 0;
+                    
                     // </editor-fold>
                     
                     break;
                     
                 case 2:
-                    System.out.println("0p 2");
+                    
+                     // <editor-fold defaultstate="collapsed" desc="Gestao de Membros">
+                    
+                        do {                        
+
+                            System.out.println("\n\n");
+
+                            System.out.println(" -- Gestao de Membros -- "); 
+
+                            System.out.println(" [ 1] - Cadastrar Membros.        ");
+                            System.out.println(" [ 2] - Editar Membros.           ");
+                            System.out.println(" [ 3] - Listar Membros.           ");
+                            System.out.println(" [ 4] - Voltar ao Menu Principal. ");
+
+                            while (true) {                        
+                                try {
+                                System.out.print("Opcao: ");
+                                    controle = Integer.parseInt(scanner.nextLine());   
+                                    if (controle == 1 || controle == 2 || controle == 3 || controle == 4 || controle == 5 || controle == 6) {
+                                        break;
+                                    }
+                                    System.out.print("Opcao invalida. Digite 1 a 6: ");
+                                } catch (NumberFormatException e) {
+                                     System.out.print("Entrada invalida. Digite um numero inteiro (1 a 6): ");
+                                }
+                            }
+
+                            switch (controle) {
+                                case 1:
+                                    System.out.println("op1");
+                                    break;
+                                
+                                case 2:
+                                    System.out.println("op2");
+                                    break;
+                                    
+                                case 3:
+                                    System.out.println("op3");
+                                    break;                                    
+                                    
+                                default:
+                                    System.out.println("Opcao nao encontrada.");
+                                    
+                                    break;
+                            }
+    
+                            
+                        } while (controle != 4);                                            
+
+                        controle = 0;
+                        
+                        // </editor-fold>
+                        
                     break;
                    
                 case 3:

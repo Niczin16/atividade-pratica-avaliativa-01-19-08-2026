@@ -9,5 +9,48 @@ package projeto.biblioteca;
  * @author Pichau
  */
 public class Pessoa {
+    private Integer controle;
+    private String nome;
+    private Integer idade;
+    private String cpf;
+    private String cep;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+    
+    public void dadosCadastrais(){
+        System.out.printf(" controle: [%2d] nome: [%-2s] | idade: [%2d] | cpf: [%-2s] | cep [%-2s] /n",
+                           controle, nome, idade, cpf, cep);
+    }
+    
     
 }
