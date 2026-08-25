@@ -21,7 +21,7 @@ public class GestaoPessoas {
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="editarCadastroPessoa">
+    // <editor-fold defaultstate="collapsed" desc="editarCadastroMembro">
         public void editarCadastroMembro(
                 Pessoa pessoa     , 
                 Integer Controle  , 
@@ -51,7 +51,7 @@ public class GestaoPessoas {
     }
     // </editor-fold>
         
-        // <editor-fold defaultstate="collapsed" desc="editarCadastroPessoa">
+    // <editor-fold defaultstate="collapsed" desc="editarCadastroFuncionario">
         public void editarCadastroFuncionario(
                 Pessoa pessoa     , 
                 Integer Controle  , 
@@ -80,4 +80,18 @@ public class GestaoPessoas {
         }
     }
     // </editor-fold>    
+        
+    // <editor-fold defaultstate="collapsed" desc="listarLivros">
+    public void listarPessoas(){
+        if (pessoas.isEmpty()) {
+            System.out.println("Nenhum pessoa cadastrado na biblioteca.");
+            return; 
+        }
+        
+        for (Pessoa lPessoa : pessoas) {
+            lPessoa.dadosCadastrais();
+        }    
+    }
+    // </editor-fold>    
+        
 }
