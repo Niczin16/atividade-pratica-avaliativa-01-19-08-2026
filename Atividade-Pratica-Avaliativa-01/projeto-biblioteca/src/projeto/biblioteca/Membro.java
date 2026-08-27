@@ -11,6 +11,11 @@ package projeto.biblioteca;
 public class Membro extends Pessoa{
     private String preferencia;
 
+    public Membro(String preferencia, Integer controle, String nome, Integer idade, String cpf, String cep) {
+        super(controle, nome, idade, cpf, cep);
+        this.preferencia = preferencia;
+    }    
+    
     public String getPreferencia() {
         return preferencia;
     }

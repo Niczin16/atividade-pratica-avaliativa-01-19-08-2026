@@ -12,7 +12,8 @@ import java.util.Scanner;
  */
 public class ProjetoBiblioteca {
 
-    static Integer gIdLivros = 0;
+    static Integer gIdLivros = 0;    
+    static Integer gIdPessoas = 0; 
     
     /**
      * @param args the command line arguments
@@ -24,8 +25,9 @@ public class ProjetoBiblioteca {
     
     public static void main(String[] args) {             
         
-        Biblioteca biblioteca = new Biblioteca();       
-        Scanner scanner       = new Scanner(System.in);
+        Biblioteca biblioteca       = new Biblioteca(); 
+        GestaoPessoas gestaoPessoas = new GestaoPessoas();
+        Scanner scanner             = new Scanner(System.in);
         
         Integer controle = 0; //Variável para gerir a interface
         
@@ -494,58 +496,134 @@ public class ProjetoBiblioteca {
                     
                 case 2:
                     
-                     // <editor-fold defaultstate="collapsed" desc="Gestao de Membros">
+                    // <editor-fold defaultstate="collapsed" desc="Gestao de Membros e Funcionarios">
                     
-                        do {                        
+                    do {                        
+                        System.out.println("\n\n");
+                        System.out.println(" -- Gestao de Pessoas -- "); 
+                        System.out.println(" [ 1] - Cadastrar Pessoa.         ");
+                        System.out.println(" [ 2] - Editar Pessoa.            ");
+                        System.out.println(" [ 3] - Listar Pessoas.           ");
+                        System.out.println(" [ 4] - Voltar ao Menu Principal. ");
 
-                            System.out.println("\n\n");
-
-                            System.out.println(" -- Gestao de Membros -- "); 
-
-                            System.out.println(" [ 1] - Cadastrar Membros.        ");
-                            System.out.println(" [ 2] - Editar Membros.           ");
-                            System.out.println(" [ 3] - Listar Membros.           ");
-                            System.out.println(" [ 4] - Voltar ao Menu Principal. ");
-
-                            while (true) {                        
-                                try {
+                        while (true) {                        
+                            try {
                                 System.out.print("Opcao: ");
-                                    controle = Integer.parseInt(scanner.nextLine());   
-                                    if (controle == 1 || controle == 2 || controle == 3 || controle == 4 || controle == 5 || controle == 6) {
-                                        break;
-                                    }
-                                    System.out.print("Opcao invalida. Digite 1 a 6: ");
-                                } catch (NumberFormatException e) {
-                                     System.out.print("Entrada invalida. Digite um numero inteiro (1 a 6): ");
+                                controle = Integer.parseInt(scanner.nextLine());   
+                                if (controle >= 1 && controle <= 4) {
+                                    break;
                                 }
+                                System.out.print("Opcao invalida. Digite 1 a 4: ");
+                            } catch (NumberFormatException e) {
+                                System.out.print("Entrada invalida. Digite um numero inteiro (1 a 4): ");
                             }
+                        }
 
-                            switch (controle) {
-                                case 1:
-                                    System.out.println("op1");
-                                    break;
+                        switch (controle) {
+                            case 1: 
                                 
-                                case 2:
-                                    System.out.println("op2");
-                                    break;
-                                    
-                                case 3:
-                                    System.out.println("op3");
-                                    break;                                    
-                                    
-                                default:
-                                    System.out.println("Opcao nao encontrada.");
-                                    
-                                    break;
-                            }
-    
-                            
-                        } while (controle != 4);                                            
+                                // <editor-fold defaultstate="collapsed" desc="Cadastrar Pessoa">
+                                
+                                System.out.println("\n\n -- Editar Pessoa -- "); 
+                                System.out.println("\nSelecione: [1] Membro | [2] Funcionario");
+                                int tipo = Integer.parseInt(scanner.nextLine());
 
-                        controle = 0;
-                        
-                        // </editor-fold>
-                        
+                                System.out.print("Nome: ");
+                                String nome = scanner.nextLine();
+                                System.out.print("Idade: ");
+                                Integer idade = Integer.parseInt(scanner.nextLine());
+                                System.out.print("CPF: ");
+                                String cpf = scanner.nextLine();
+                                System.out.print("CEP: ");
+                                String cep = scanner.nextLine();
+
+                                if (tipo == 1) {
+                                    System.out.print("Preferencia: ");
+                                    String pref = scanner.nextLine();
+                                    
+                                    Membro membro = new Membro(pref, ++gIdPessoas, nome, idade, cpf, cep);
+                                    gestaoPessoas.cadastrarPessoa(membro);
+
+                                } else if (tipo == 2) {
+                                    System.out.print("Numero de Registro: ");
+                                    String numReg = scanner.nextLine();
+                                    
+                                    Funcionario funcionario = new Funcionario(numReg, ++gIdPessoas, nome, idade, cpf, cep);
+                                    gestaoPessoas.cadastrarPessoa(funcionario);
+                                }
+                                
+                                // </editor-fold>
+                                
+                                break;
+
+                            case 2: 
+                                
+                               // <editor-fold defaultstate="collapsed" desc="Editar Pessoa">                                                                
+    
+                                System.out.println("\nSelecione: [1] Editar Membro | [2] Editar Funcionario");
+                                int tipoEdicao = Integer.parseInt(scanner.nextLine());
+
+                                System.out.print("ID (Controle) da pessoa: ");
+                                Integer idEdit = Integer.parseInt(scanner.nextLine());
+
+                                Pessoa pessoaEncontrada = gestaoPessoas.buscarPessoa(idEdit);
+                                
+                                if (pessoaEncontrada == null) {
+                                    System.out.println("Erro: Pessoa nao encontrada ou lista vazia.");
+                                    break; 
+                                }
+
+                                System.out.println("\n-- Pessoa Selecionada --");
+                                pessoaEncontrada.dadosCadastrais();
+                                System.out.println("-----------------------\n");
+
+                                System.out.print("Novo Nome: ");
+                                String nNome = scanner.nextLine();
+                                System.out.print("Nova Idade: ");
+                                Integer nIdade = Integer.parseInt(scanner.nextLine());
+                                System.out.print("Novo CPF: ");
+                                String nCpf = scanner.nextLine();
+                                System.out.print("Novo CEP: ");
+                                String nCep = scanner.nextLine();
+
+                                if (tipoEdicao == 1 && pessoaEncontrada instanceof Membro aMembro) {
+                                    System.out.print("Nova Preferencia: ");
+                                    String nPref = scanner.nextLine();
+
+                                    gestaoPessoas.editarCadastroMembro(aMembro, idEdit, nNome, nIdade, nCpf, nCep, nPref);
+                                } else if (tipoEdicao == 2 && pessoaEncontrada instanceof Funcionario aFuncionario) {
+                                    System.out.print("Novo Num. Registro: ");
+                                    String nReg = scanner.nextLine();
+                                    gestaoPessoas.editarCadastroFuncionario(aFuncionario, idEdit, nNome, nIdade, nCpf, nCep, nReg);
+                                } else {
+                                    System.out.println("Erro: O ID informado nao corresponde ao tipo selecionado.");
+                                }
+
+                                // </editor-fold>
+                              
+                                break;
+
+                            case 3: 
+                                
+                                // <editor-fold defaultstate="collapsed" desc="Lista de Pessoas">
+                                
+                                System.out.println("\n\n -- Lista de Pessoas -- ");
+                                gestaoPessoas.listarPessoas();
+                                
+                                // </editor-fold>
+                                
+                                break;                                    
+
+                            case 4:
+                                System.out.println("Voltando ao menu principal...");
+                                break;
+                        }
+
+                    } while (controle != 4);                                            
+
+                    controle = 0;
+                    // </editor-fold>
+                    
                     break;
                    
                 case 3:

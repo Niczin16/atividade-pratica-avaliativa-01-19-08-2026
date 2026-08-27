@@ -32,7 +32,7 @@ public class GestaoPessoas {
                 String preferencia
         ){
         if (pessoas.isEmpty()) {
-            System.out.println("Não há nenhum" + pessoa + "cadastrado.");
+            System.out.println("Não há nenhum membro cadastrado.");
             return; 
         }
         
@@ -62,7 +62,7 @@ public class GestaoPessoas {
                 String numeroRegis
         ){
         if (pessoas.isEmpty()) {
-            System.out.println("Não há nenhum" + pessoa + "cadastrado.");
+            System.out.println("Não há nenhum funcionario cadastrado.");
             return; 
         }
         
@@ -81,10 +81,10 @@ public class GestaoPessoas {
     }
     // </editor-fold>    
         
-    // <editor-fold defaultstate="collapsed" desc="listarLivros">
+    // <editor-fold defaultstate="collapsed" desc="listarPessoas">
     public void listarPessoas(){
         if (pessoas.isEmpty()) {
-            System.out.println("Nenhum pessoa cadastrado na biblioteca.");
+            System.out.println("Nenhum pessoa cadastrado na lista de pessoas.");
             return; 
         }
         
@@ -94,4 +94,16 @@ public class GestaoPessoas {
     }
     // </editor-fold>    
         
+    // <editor-fold defaultstate="collapsed" desc="buscarPessoa">
+    public Pessoa buscarPessoa(Integer Controle){
+        for (Pessoa lPessoa : pessoas){
+            if (lPessoa.getControle().equals(Controle)){
+                return lPessoa;
+            }
+        }
+        return null;
+    }
+    // </editor-fold>    
+    
+    
 }

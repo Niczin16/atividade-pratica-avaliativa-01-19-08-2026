@@ -11,6 +11,11 @@ package projeto.biblioteca;
 public class Funcionario extends Pessoa{
     String numeroRegistro;
 
+    public Funcionario(String numeroRegistro, Integer controle, String nome, Integer idade, String cpf, String cep) {
+        super(controle, nome, idade, cpf, cep);
+        this.numeroRegistro = numeroRegistro;
+    }    
+    
     public String getNumeroRegistro() {
         return numeroRegistro;
     }

@@ -15,6 +15,23 @@ public class Pessoa {
     private String cpf;
     private String cep;
 
+    public Pessoa(Integer controle, String nome, Integer idade, String cpf, String cep) {
+        this.controle = controle;
+        this.nome = nome;
+        this.idade = idade;
+        this.cpf = cpf;
+        this.cep = cep;
+    }    
+    
+    public Integer getControle() {
+        return controle;
+    }
+
+    public void setControle(Integer controle) {
+        this.controle = controle;
+    }
+    
+    
     public String getNome() {
         return nome;
     }
