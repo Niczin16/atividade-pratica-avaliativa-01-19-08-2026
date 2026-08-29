@@ -59,5 +59,4 @@ public class Livro {
         System.out.printf(" [ %-2s ] | %-25s |  %-20s | %3d págs.\n", 
                 Controle ,Titulo, Autor, NumeroPaginas);
     }
-
 }

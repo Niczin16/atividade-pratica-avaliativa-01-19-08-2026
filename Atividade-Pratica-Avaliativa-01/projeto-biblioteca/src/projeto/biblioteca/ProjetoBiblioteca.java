@@ -12,8 +12,9 @@ import java.util.Scanner;
  */
 public class ProjetoBiblioteca {
 
-    static Integer gIdLivros = 0;    
-    static Integer gIdPessoas = 0; 
+    static Integer gIdLivros      = 0;    
+    static Integer gIdPessoas     = 0;
+    static Integer gIdEmprestimos = 0;
     
     /**
      * @param args the command line arguments
@@ -25,9 +26,10 @@ public class ProjetoBiblioteca {
     
     public static void main(String[] args) {             
         
-        Biblioteca biblioteca       = new Biblioteca(); 
-        GestaoPessoas gestaoPessoas = new GestaoPessoas();
-        Scanner scanner             = new Scanner(System.in);
+        Biblioteca biblioteca             = new Biblioteca(); 
+        GestaoPessoas gestaoPessoas       = new GestaoPessoas();
+        GerirEmprestimos gerirEmprestimos = new GerirEmprestimos();
+        Scanner scanner                   = new Scanner(System.in);
         
         Integer controle = 0; //Variável para gerir a interface
         
@@ -627,7 +629,99 @@ public class ProjetoBiblioteca {
                     break;
                    
                 case 3:
-                    System.out.println("0p 3");
+                    
+                    // <editor-fold defaultstate="collapsed" desc="Gestao de Emprestimos">
+                                                               
+                        do {                        
+                            System.out.println("\n\n");
+                            System.out.println(" -- Gestao de Emprestimos -- "); 
+                            System.out.println(" [ 1] - Realizar Emprestimo.      ");
+                            System.out.println(" [ 2] - Finalizar Emprestimo.     ");
+                            System.out.println(" [ 3] - Listar Emprestimos.       ");
+                            System.out.println(" [ 4] - Voltar ao Menu Principal. ");
+
+                            while (true) {                        
+                                try {
+                                    System.out.print("Opcao: ");
+                                    controle = Integer.parseInt(scanner.nextLine());   
+                                    if (controle >= 1 && controle <= 4) break;
+                                    System.out.print("Opcao invalida. Digite 1 a 4: ");
+                                } catch (NumberFormatException e) {
+                                    System.out.print("Entrada invalida. Digite um numero inteiro (1 a 4): ");
+                                }
+                            }
+
+                            switch (controle) {
+                                case 1: 
+                                    System.out.println("\n-- Realizar Emprestimo --");
+                                    System.out.print("Data do Emprestimo: ");
+                                    String data = scanner.nextLine();
+
+                                    System.out.print("Informe o ID do Membro (quem vai pegar o livro): ");
+                                    Integer idMembro = Integer.parseInt(scanner.nextLine());
+                                    Pessoa pessoaMembro = gestaoPessoas.buscarPessoa(idMembro);
+
+                                    if (pessoaMembro == null || !(pessoaMembro instanceof Membro)) {
+                                        System.out.println("Erro: Membro nao encontrado ou ID nao pertence a um Membro.");
+                                        break; 
+                                    }
+
+                                    System.out.print("Informe o ID do Funcionario (quem esta atendendo): ");
+                                    Integer idFunc = Integer.parseInt(scanner.nextLine());
+                                    Pessoa pessoaFunc = gestaoPessoas.buscarPessoa(idFunc);
+
+                                    if (pessoaFunc == null || !(pessoaFunc instanceof Funcionario)) {
+                                        System.out.println("Erro: Funcionario nao encontrado ou ID nao pertence a um Funcionario.");
+                                        break;
+                                    }
+
+                                    // Cria o empréstimo pegando os nomes diretamente dos objetos encontrados
+                                    Emprestimo novoEmprestimo = new Emprestimo(++gIdEmprestimos, data, pessoaMembro.getNome(), pessoaFunc.getNome());
+
+                                    int addMaisLivros = 1;
+                                    do {
+                                        System.out.print("Informe o ID do Livro para adicionar ao emprestimo: ");
+                                        Integer idBuscaLivro = Integer.parseInt(scanner.nextLine());
+
+                                        Livro livroEmprestado = biblioteca.buscarLivro(idBuscaLivro);
+
+                                        if (livroEmprestado != null) {
+                                            novoEmprestimo.getLivros().add(livroEmprestado);
+                                            System.out.println("Livro adicionado ao emprestimo!");
+                                        } else {
+                                            System.out.println("Erro: Livro nao encontrado.");
+                                        }
+
+                                        System.out.print("Deseja adicionar mais livros? [1] Sim | [2] Nao: ");
+                                        addMaisLivros = Integer.parseInt(scanner.nextLine());
+                                    } while (addMaisLivros == 1);
+
+                                    gerirEmprestimos.realizarEmprestimo(novoEmprestimo);
+                                    break;
+
+                                case 2: 
+                                    System.out.println("\n-- Finalizar Emprestimo --");
+                                    System.out.print("Informe o ID do emprestimo para finaliza-lo: ");
+                                    Integer idEmprestimo = Integer.parseInt(scanner.nextLine());
+
+                                    gerirEmprestimos.finalizarEmprestimo(idEmprestimo);
+                                    break;
+
+                                case 3: 
+                                    System.out.println("\n-- Lista de Emprestimos --");
+                                    gerirEmprestimos.listarEmprestimos();
+                                    break;                                    
+
+                                case 4:
+                                    System.out.println("Voltando ao menu principal...");
+                                    break;
+                            }
+
+                        } while (controle != 4);                                            
+
+                        controle = 0;
+                        // </editor-fold>                        
+                    
                     break;
                 
                 case -1:

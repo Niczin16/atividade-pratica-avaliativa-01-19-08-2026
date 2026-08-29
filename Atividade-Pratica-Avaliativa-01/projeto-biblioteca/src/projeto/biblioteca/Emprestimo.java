@@ -62,5 +62,18 @@ public class Emprestimo {
     public void setLivros(ArrayList<Livro> livros) {
         this.livros = livros;
     }
+    
+    public void descricaoEmprestimos(){
+        System.out.printf(" id: [ %d ] | Data do emprestimo: [ %s ] | Quem pegou o livro: [ %s ] |"
+                + " Funcionario que atendeu: [ %s ] ",
+                getControle(), getDataEmprestimo(), getMembro(), getFuncionarioAtendeu());
+        
+        System.out.println("\n\n Livros em emprestimo: \n\n");
+        
+        for (Livro lLivro : livros){
+            lLivro.descricao();
+        }
+        System.out.println("\n\n");
+    }
         
 }
