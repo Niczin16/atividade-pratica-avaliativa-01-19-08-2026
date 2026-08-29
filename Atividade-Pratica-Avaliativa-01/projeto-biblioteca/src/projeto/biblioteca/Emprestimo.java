@@ -15,4 +15,52 @@ public class Emprestimo {
     private String Membro;
     private String FuncionarioAtendeu;
     private ArrayList<Livro> livros = new ArrayList<>();
+
+    public Emprestimo(Integer Controle, String DataEmprestimo, String Membro, String FuncionarioAtendeu) {
+        this.Controle = Controle;
+        this.DataEmprestimo = DataEmprestimo;
+        this.Membro = Membro;
+        this.FuncionarioAtendeu = FuncionarioAtendeu;
+    }    
+    
+    public Integer getControle() {
+        return Controle;
+    }
+
+    public void setControle(Integer Controle) {
+        this.Controle = Controle;
+    }
+
+    public String getDataEmprestimo() {
+        return DataEmprestimo;
+    }
+
+    public void setDataEmprestimo(String DataEmprestimo) {
+        this.DataEmprestimo = DataEmprestimo;
+    }
+
+    public String getMembro() {
+        return Membro;
+    }
+
+    public void setMembro(String Membro) {
+        this.Membro = Membro;
+    }
+
+    public String getFuncionarioAtendeu() {
+        return FuncionarioAtendeu;
+    }
+
+    public void setFuncionarioAtendeu(String FuncionarioAtendeu) {
+        this.FuncionarioAtendeu = FuncionarioAtendeu;
+    }
+
+    public ArrayList<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(ArrayList<Livro> livros) {
+        this.livros = livros;
+    }
+        
 }
